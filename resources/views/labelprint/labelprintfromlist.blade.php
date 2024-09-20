@@ -103,11 +103,40 @@
         $(document).ready(function() {
             $('#datatable').DataTable({
                 dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
+                buttons: [{
+                        extend: 'copy',
+                        text: 'Copy'
+                    },
+                    {
+                        extend: 'csv',
+                        text: 'CSV'
+                    },
+                    {
+                        extend: 'excel',
+                        text: 'Excel'
+                    },
+                    // {
+                    //     extend: 'pdf',
+                    //     text: 'PDF'
+                    // },
+                    // {
+                    //     extend: 'print',
+                    //     text: 'Print',
+                    //     customize: function(win) {
+                    //         // Ensure the printed table has full width and displays all data
+                    //         $(win.document.body).css('font-size', '10pt').prepend('<h3>All Data Print</h3>');
+
+                    //         $(win.document.body).find('table').addClass('display').css('font-size', 'inherit').css('width', '100%');
+                    //     },
+                    //     exportOptions: {
+                    //         modifier: {
+                    //             page: 'all' // Ensures all data is printed, not just visible rows
+                    //         }
+                    //     },
+                    //     autoPrint: false // Prevent automatic print trigger, so we can manipulate scroll
+                    // }
                 ],
-              
-                scrollX: true,
+                scrollX: true, // For horizontal scrolling
                 processing: true,
                 serverSide: true,
                 stateSave: false,
@@ -210,6 +239,29 @@
                     }
                 ]
 
+            });
+
+            // Handle print button action
+            $('.buttons-print').on('click', function() {
+                // Temporarily disable scrolling and re-draw the table to show all data
+                var scrollEnabled = table.settings()[0].oScroll.sX || table.settings()[0].oScroll.sY;
+                if (scrollEnabled) {
+                    table.settings()[0].oScroll.sX = ''; // Disable horizontal scroll
+                    table.settings()[0].oScroll.sY = ''; // Disable vertical scroll
+                    table.draw(); // Re-draw table without scroll
+                }
+
+                // Trigger the print function manually
+                table.button('.buttons-print').trigger();
+
+                // Re-enable scrolling after a small delay (after printing)
+                setTimeout(function() {
+                    if (scrollEnabled) {
+                        table.settings()[0].oScroll.sX = '100%'; // Re-enable horizontal scroll
+                        table.settings()[0].oScroll.sY = '200px'; // Re-enable vertical scroll
+                        table.draw(); // Re-draw table with scroll
+                    }
+                }, 1000); // 1 second delay to ensure print completes
             });
         });
     </script>
