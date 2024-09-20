@@ -6,7 +6,7 @@ export default function GuestLayout({ children }) {
         <div
             className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-cover bg-center bg-no-repeat"
             style={{
-                backgroundImage: `url('http://127.0.0.1:8000/assets/img/printingimg.png')`,
+                backgroundImage: `url('http://127.0.0.1:8001/assets/img/printingimg.png')`,
             }}
         >
             <div>

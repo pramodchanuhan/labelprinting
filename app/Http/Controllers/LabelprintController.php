@@ -10,6 +10,7 @@ use App\Notifications\StatusNotification;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\RegistrationSuccessful;
 use Illuminate\Support\Facades\Mail;
+use Yajra\DataTables\DataTables;
 
 class LabelprintController extends Controller
 {
@@ -26,10 +27,79 @@ class LabelprintController extends Controller
     }
 
     
-    public function labelprintfrom_list()
+    public function labelprintfrom_list(Request $request)
     {
-        $Labelprintfrom = Labelprintfrom::all();
-        return view('labelprint/labelprintfromlist',compact('Labelprintfrom'));
+
+        if ($request->ajax()) {
+        $query = Labelprintfrom::select(['id','prefix',
+       'name',
+       'address',
+       'local_area',
+       'city',
+       'district',
+       'state',
+       'zip_code',
+       'date_of_birth',
+       'partner_name',
+       'anniversary',
+       'partner_dob',
+       'options',
+       'contact_person',
+       'std_code',
+       'office',
+       'office2',
+       'resident',
+       'fax',
+       'mobile_no',
+       'mobile_no2',
+       'email']);
+        return DataTables::of($query)
+        ->addColumn('index', function ($query) {
+            static $index = 1;
+            return $index++;
+        })
+        ->addColumn('action', function ($query) {
+            return '
+                <a href="' . route('labelprint.edit', $query->id) . '" class="btn btn-primary btn-sm">Edit</a>
+                <form action="' . route('labelprint.destroy', $query->id) . '" method="POST" style="display:inline;" onsubmit="return confirm(\'Are you sure?\');">
+                    ' . csrf_field() . '
+                    ' . method_field('DELETE') . '
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            ';
+        })
+        ->filter(function ($query) {
+            if (request()->has('search.value')) {
+                $searchValue = request()->input('search.value');
+                $query->where(function ($query) use ($searchValue) {
+                    $query->where('name', 'like', "%" . $searchValue . "%")
+                    ->orWhere('name', 'like', '%' . $searchValue . '%')
+                    ->orWhere('address', 'like', '%' . $searchValue . '%')
+                    ->orWhere('local_area', 'like', '%' . $searchValue . '%')
+                    ->orWhere('city', 'like', '%' . $searchValue . '%')
+                    ->orWhere('district', 'like', '%' . $searchValue . '%')
+                    ->orWhere('state', 'like', '%' . $searchValue . '%')
+                    ->orWhere('zip_code', 'like', '%' . $searchValue . '%')
+                    ->orWhere('date_of_birth', 'like', '%' . $searchValue . '%')
+                    ->orWhere('partner_name', 'like', '%' . $searchValue . '%')
+                    ->orWhere('anniversary', 'like', '%' . $searchValue . '%')
+                    ->orWhere('partner_dob', 'like', '%' . $searchValue . '%')
+                    ->orWhere('options', 'like', '%' . $searchValue . '%')
+                    ->orWhere('contact_person', 'like', '%' . $searchValue . '%')
+                    ->orWhere('std_code', 'like', '%' . $searchValue . '%')
+                    ->orWhere('office', 'like', '%' . $searchValue . '%')
+                    ->orWhere('office2', 'like', '%' . $searchValue . '%')
+                    ->orWhere('resident', 'like', '%' . $searchValue . '%')
+                    ->orWhere('fax', 'like', '%' . $searchValue . '%')
+                    ->orWhere('mobile_no', 'like', '%' . $searchValue . '%')
+                    ->orWhere('mobile_no2', 'like', '%' . $searchValue . '%')
+                    ->orWhere('email', 'like', '%' . $searchValue . '%');
+                });
+            }
+        })
+        ->make(true);
+    }
+        return view('labelprint/labelprintfromlist');
     }
 
     public function labelprintfrom_store(Request $request)

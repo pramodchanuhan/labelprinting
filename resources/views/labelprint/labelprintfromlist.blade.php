@@ -35,7 +35,7 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Prefix With</th>
+                                                <th>Prefix</th>
                                                 <th>Name</th>
                                                 <th>Address</th>
                                                 <th>Local Area</th>
@@ -43,40 +43,24 @@
                                                 <th>District</th>
                                                 <th>State</th>
                                                 <th>Zip Code</th>
+                                                <th>Date of Birth</th>
+                                                <th>Partner Name</th>
+                                                <th>Anniversary</th>
+                                                <th>Partner DOB</th>
                                                 <th>Options</th>
+                                                <th>Contact Person</th>
+                                                <th>STD Code</th>
+                                                <th>Office</th>
+                                                <th>Office 2</th>
+                                                <th>Resident</th>
+                                                <th>Fax</th>
                                                 <th>Mobile No</th>
+                                                <th>Mobile No 2</th>
                                                 <th>Email</th>
-                                                <!-- <th>Starting Point</th>
-                                                <th>Remark</th>
-                                                <th>Amount</th> -->
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($Labelprintfrom as $index => $Labelprint)
-                                            <tr>
-                                                <!-- Display the index starting from 1 -->
-                                                <td>{{ $index + 1 }}</td>
-                                                <!-- Print button with trip ID -->
-                                                
-                                                <!-- Display ticket details -->
-                                                <td>{{ $Labelprint->prefix }}</td>
-                                                <td>{{ $Labelprint->name }}</td>
-                                                <td>{{ $Labelprint->address }}</td>
-                                                <td>{{ $Labelprint->local_area }}</td>
-                                                <td>{{ $Labelprint->city }}</td>
-                                                <td>{{ $Labelprint->district }}</td>
-                                                <td>{{ $Labelprint->state }}</td>
-                                                <td>{{ $Labelprint->zip_code }}</td>
-                                                <td>{{ $Labelprint->options }}</td>
-                                                <td>{{ $Labelprint->mobile_no }}</td>
-                                                <td>{{ $Labelprint->email }}</td>
-                                                <td>
-                                                    <a href="{{ url('labelprint/labelprintfromedit/' . $Labelprint->id) }}">
-                                                        <span class="fa fa-edit" style="color: #dc3545;" aria-hidden="true"></span>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            @endforeach
                                         </tbody>
 
                                         <tfoot>
@@ -122,8 +106,110 @@
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ],
-
+              
                 scrollX: true,
+                processing: true,
+                serverSide: true,
+                stateSave: false,
+                ajax: '{{ route("labelprint.labelprintfromlist") }}',
+                columns: [{
+                        data: 'index',
+                        name: 'index'
+                    },
+                    {
+                        data: 'prefix',
+                        name: 'prefix'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'address',
+                        name: 'address'
+                    },
+                    {
+                        data: 'local_area',
+                        name: 'local_area'
+                    },
+                    {
+                        data: 'city',
+                        name: 'city'
+                    },
+                    {
+                        data: 'district',
+                        name: 'district'
+                    },
+                    {
+                        data: 'state',
+                        name: 'state'
+                    },
+                    {
+                        data: 'zip_code',
+                        name: 'zip_code'
+                    },
+                    {
+                        data: 'date_of_birth',
+                        name: 'date_of_birth'
+                    },
+                    {
+                        data: 'partner_name',
+                        name: 'partner_name'
+                    },
+                    {
+                        data: 'anniversary',
+                        name: 'anniversary'
+                    },
+                    {
+                        data: 'partner_dob',
+                        name: 'partner_dob'
+                    },
+                    {
+                        data: 'options',
+                        name: 'options'
+                    },
+                    {
+                        data: 'contact_person',
+                        name: 'contact_person'
+                    },
+                    {
+                        data: 'std_code',
+                        name: 'std_code'
+                    },
+                    {
+                        data: 'office',
+                        name: 'office'
+                    },
+                    {
+                        data: 'office2',
+                        name: 'office2'
+                    },
+                    {
+                        data: 'resident',
+                        name: 'resident'
+                    },
+                    {
+                        data: 'fax',
+                        name: 'fax'
+                    },
+                    {
+                        data: 'mobile_no',
+                        name: 'mobile_no'
+                    },
+                    {
+                        data: 'mobile_no2',
+                        name: 'mobile_no2'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                    }
+                ]
+
             });
         });
     </script>
