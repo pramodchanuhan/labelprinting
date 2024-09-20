@@ -115,12 +115,12 @@ Route::middleware('auth')->group(function () {
 
    
     Route::post('employees-store', [EmployeesController::class, 'employees_store'])->name('employees-store');
-    Route::get('/labelprint/labelprintfrom', '\App\Http\Controllers\LabelprintController@index')->name('labelprint.labelprintfrom');
+    Route::get('/labelprint/labelprintfrom', [LabelprintController::class, 'index'])->name('labelprint.labelprintfrom');
     Route::post('labelprint/labelprintfrom-store', [LabelprintController::class, 'labelprintfrom_store'])->name('labelprint.labelprintfrom-store');
-    Route::get('/labelprint/labelprintfromedit/{id}', '\App\Http\Controllers\LabelprintController@edit')->name('labelprint.edit');
-    Route::post('labelprint/labelprintfrom-update/{id}', [LabelprintController::class, 'labelprintfrom_update'])->name('labelprint.labelprintfrom-update');
-    Route::get('/labelprint/labelprintfromlist', [LabelprintController::class, 'labelprintfrom_list'])->name('labelprint.labelprintfromlist');
-    Route::delete('/labelprint/delete/{id}', [LabelprintController::class, 'labelprintfrom_delete'])->name('labelprint.destroy');
+    Route::get('/labelprint/labelprintfromedit/{id}', [LabelprintController::class, 'edit'])->name('labelprint.edit');
+    Route::post('labelprint/labelprintfrom-update/{id}', [LabelprintController::class, 'update'])->name('labelprint.labelprintfrom-update');
+    Route::get('/labelprint/labelprintfromlist', [LabelprintController::class, 'list'])->name('labelprint.labelprintfromlist');
+    Route::delete('/labelprint/delete/{id}', [LabelprintController::class, 'delete'])->name('labelprint.destroy');
 
     Route::get('/shreesairaj/thankyou/{id}', [RegisterformController::class, 'thankyou'])->name('shreesairaj.thankyou');
     Route::get('/shreesairaj/registerfromList', [RegisterformController::class, 'registerfromList'])->name('shreesairaj.registerfromList');

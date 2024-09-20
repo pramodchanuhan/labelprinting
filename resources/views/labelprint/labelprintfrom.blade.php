@@ -136,12 +136,22 @@
                                                                 <option value="Gov"> Governor (Gov) </option>
                                                                 <option value="Ofc"> Officer (Ofc) </option>
                                                             </select>
+                                                            @error('prefix')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="name">Name</label>
-                                                            <input type="text" class="form-control" id="name" name="name" required>
+                                                            <input type="text" class="form-control" id="name" name="name">
+                                                            @error('name')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">

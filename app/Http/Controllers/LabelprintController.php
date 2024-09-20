@@ -27,7 +27,7 @@ class LabelprintController extends Controller
     }
 
     
-    public function labelprintfrom_list(Request $request)
+    public function list(Request $request)
     {
 
         if ($request->ajax()) {
@@ -104,11 +104,27 @@ class LabelprintController extends Controller
 
     public function labelprintfrom_store(Request $request)
     {
-        //dd($request->all());
-        // Validate the request data
         $validatedData = $request->validate([
-            
-    
+            'name' => 'required||min:3',
+            'address' => 'required|max:255',
+            'local_area' => 'required|min:3',
+            'city' => 'required|min:3',
+            'district' => 'required|min:3',
+            'state' => 'required|min:3',
+            'zip_code' => 'required|min:3',
+            'date_of_birth' => 'required|date',
+            'partner_name' => 'required|min:3', 
+            'anniversary' => 'required|date',   
+            'partner_dob' => 'required|date',
+            'contact_person' => 'required|min:3',   
+            'std_code' => 'required|numeric|min:6',
+            'office' => 'required|min:3',   
+            'office2' => 'required|min:3',
+            'resident' => 'required|min:3',
+            'fax' => 'required|numeric|min:6',
+            'mobile_no' => 'required|numeric|min:10',
+            'mobile_no2' => 'required|numeric|min:10',
+            'email' => 'required|email',
         ]);
 
         // Create a new instance of the LabelPrintForm model (Assuming 'LabelPrintForm' is the model for 'labelprintfrom' table)
@@ -145,11 +161,12 @@ class LabelprintController extends Controller
         $labelprintfrom->save();
 
         // Redirect to a thank-you page or back with success message
-        return back()->with('success', 'Form has been successfully submitted!');
+        return redirect()->route('labelprint.labelprintfromlist')->with('success', 'Form has been successfully submitted!');
+
     }
 
 
-    public function labelprintfrom_update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         // Validate the request data
         $validatedData = $request->validate([
@@ -174,7 +191,7 @@ class LabelprintController extends Controller
         $labelprintfrom->partner_dob = $request->partner_dob;
     
         // Join the array of selected options into a string, separated by commas
-        $labelprintfrom->options = $request->has('options') ? implode(',', $request->options) : null;
+        $labelprintfrom->options = $request->has('options') ? json_encode($request->options) : null;
     
         $labelprintfrom->contact_person = $request->contact_person;
         $labelprintfrom->std_code = $request->std_code;
@@ -190,9 +207,14 @@ class LabelprintController extends Controller
         $labelprintfrom->save();
 
         // Redirect to a thank-you page or back with success message
-        return back()->with('success', 'Form has been successfully Updated!');
+        return redirect()->route('labelprint.labelprintfromlist')->with('success', 'Form has been successfully Updated!');
     }
 
+    public function delete(Request $request, $id){
+
+        Labelprintfrom::find($id)->delete();
+        return redirect()->route('labelprint.labelprintfromlist')->with('success', 'Form has been successfully Deleted!');
+    }
 
     public function thankyou($id)
     {
