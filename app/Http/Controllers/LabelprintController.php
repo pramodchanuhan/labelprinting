@@ -105,9 +105,9 @@ class LabelprintController extends Controller
     }
 
     public function labelprintfrom_store(Request $request)
-    {
+    {   
         $validatedData = $request->validate([
-            'name' => 'required||min:3',
+            'name' => 'required|min:3',
             'address' => 'required|max:255',
             'local_area' => 'required|min:3',
             'city' => 'required|min:3',
@@ -119,15 +119,16 @@ class LabelprintController extends Controller
             'anniversary' => 'required|date',   
             'partner_dob' => 'required|date',
             'contact_person' => 'required|min:3',   
-            'std_code' => 'required|numeric|min:6',
+            'std_code' => 'required|numeric|digits:6',  // Assuming standard code is 6 digits
             'office' => 'required|min:3',   
             'office2' => 'required|min:3',
             'resident' => 'required|min:3',
-            'fax' => 'required|numeric|min:6',
-            'mobile_no' => 'required|numeric|min:10',
-            'mobile_no2' => 'required|numeric|min:10',
+            'fax' => 'required|numeric|digits:6',  // Assuming fax is 6 digits
+            'mobile_no' => 'required|numeric|digits:10', // Assuming mobile no is between 10 to 15 digits
+            'mobile_no2' => 'required|numeric|digits:10', // Same for mobile_no2
             'email' => 'required|email',
         ]);
+        
 
         // Create a new instance of the LabelPrintForm model (Assuming 'LabelPrintForm' is the model for 'labelprintfrom' table)
         $labelprintfrom = new Labelprintfrom;
@@ -143,9 +144,6 @@ class LabelprintController extends Controller
         $labelprintfrom->partner_name = $request->partner_name;
         $labelprintfrom->anniversary = $request->anniversary;
         $labelprintfrom->partner_dob = $request->partner_dob;
-    
-        // Join the array of selected options into a string, separated by commas
-        // $labelprintfrom->options = $request->has('options') ? implode(',', $request->options) : null;
         $labelprintfrom->options = $request->has('options') ? json_encode($request->options) : null;
 
     
@@ -170,9 +168,27 @@ class LabelprintController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validate the request data
         $validatedData = $request->validate([
-    
+            'name' => 'required|min:3',
+            'address' => 'required|max:255',
+            'local_area' => 'required|min:3',
+            'city' => 'required|min:3',
+            'district' => 'required|min:3',
+            'state' => 'required|min:3',
+            'zip_code' => 'required|min:3',
+            'date_of_birth' => 'required|date',
+            'partner_name' => 'required|min:3', 
+            'anniversary' => 'required|date',   
+            'partner_dob' => 'required|date',
+            'contact_person' => 'required|min:3',   
+            'std_code' => 'required|numeric|digits:6',  // Assuming standard code is 6 digits
+            'office' => 'required|min:3',   
+            'office2' => 'required|min:3',
+            'resident' => 'required|min:3',
+            'fax' => 'required|numeric|digits:6',  // Assuming fax is 6 digits
+            'mobile_no' => 'required|numeric|digits:10', // Assuming mobile no is between 10 to 15 digits
+            'mobile_no2' => 'required|numeric|digits:10', // Same for mobile_no2
+            'email' => 'required|email',
         ]);
 
         // Create a new instance of the LabelPrintForm model (Assuming 'LabelPrintForm' is the model for 'labelprintfrom' table)

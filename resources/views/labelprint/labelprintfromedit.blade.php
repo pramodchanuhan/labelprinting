@@ -143,43 +143,78 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="name">Name</label>
-                                                            <input type="text" class="form-control" id="name" name="name" value="{{ $Labelprintfrom->name }}" required>
+                                                            <input type="text" id="name" name="name" value="{{ old('name') ?? $Labelprintfrom->name }}" class="form-control @error('name') is-invalid @enderror">
+                                                            @error('name')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="Address">Address</label>
-                                                            <input type="text" class="form-control" id="address" name="address" value="{{ $Labelprintfrom->address }}" required>
+                                                            <input type="text" id="address" name="address" value="{{ old('address') ?? $Labelprintfrom->address }}" class="form-control @error('address') is-invalid @enderror">
+                                                            @error('address')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="Local Area">Local Area</label>
-                                                            <input type="text" class="form-control" id="local_area" name="local_area" value="{{ $Labelprintfrom->local_area }}" required>
+                                                            <input type="text" id="local_area" name="local_area" value="{{ old('local_area') ?? $Labelprintfrom->local_area }}" class="form-control @error('local_area') is-invalid @enderror">
+                                                            @error('local_area')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="City">City</label>
-                                                            <input type="text" class="form-control" id="city" name="city" value="{{ $Labelprintfrom->city }}" required>
+                                                            <input type="text" id="city" name="city" value="{{ old('city') ?? $Labelprintfrom->city }}" class="form-control @error('city') is-invalid @enderror">
+                                                            @error('city')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="District">District</label>
-                                                            <input type="text" class="form-control" id="district" name="district" value="{{ $Labelprintfrom->district }}" required>
+                                                            <input type="text"  id="district" name="district" value="{{ old('district') ?? $Labelprintfrom->district }}" class="form-control @error('district') is-invalid @enderror">
+                                                            @error('district')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="State">State</label>
-                                                            <input type="text" class="form-control" id="state" name="state" value="{{ $Labelprintfrom->state }}" required>
+                                                            <input type="text"  id="state" name="state" value="{{ old('state') ?? $Labelprintfrom->state }}" class="form-control @error('state') is-invalid @enderror">
+                                                            @error('state')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="Zip Code">Zip Code</label>
-                                                            <input type="text" class="form-control" id="zip_code" name="zip_code" value="{{ $Labelprintfrom->zip_code }}" required>
+                                                            <input type="text"  id="zip_code" name="zip_code" value="{{ old('zip_code') ?? $Labelprintfrom->zip_code }}" class="form-control @error('zip_code') is-invalid @enderror">
+                                                            @error('zip_code')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div><br>
                                                     <div class="col-md-12"><br>
@@ -188,25 +223,45 @@
                                                             <div class="col-md-2">
                                                                 <div class="form-group">
                                                                     <label for="Date of Birth">Date of Birth</label>
-                                                                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{ $Labelprintfrom->date_of_birth }}" required>
+                                                                    <input type="date"  id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth') ?? $Labelprintfrom->date_of_birth }}" class="form-control @error('date_of_birth') is-invalid @enderror">
+                                                                    @error('date_of_birth')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label for="Partner Name">Partner Name</label>
-                                                                    <input type="text" class="form-control" id="partner_name" name="partner_name" value="{{ $Labelprintfrom->partner_name }}" required>
+                                                                    <input type="text"  id="partner_name" name="partner_name" value="{{ old('partner_name') ?? $Labelprintfrom->partner_name }}" class="form-control @error('partner_name') is-invalid @enderror">
+                                                                    @error('partner_name')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-2">
                                                                 <div class="form-group">
                                                                     <label for="Anniversary">Anniversary</label>
-                                                                    <input type="date" class="form-control" id="anniversary" name="anniversary" value="{{ $Labelprintfrom->anniversary }}" required>
+                                                                    <input type="date" id="anniversary" name="anniversary" value="{{ old('anniversary') ?? $Labelprintfrom->anniversary }}" class="form-control @error('anniversary') is-invalid @enderror">
+                                                                    @error('anniversary')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-2">
                                                                 <div class="form-group">
                                                                     <label for="Partner's DOB">Partner's DOB</label>
-                                                                    <input type="date" class="form-control" id="partner_dob" name="partner_dob" value="{{ $Labelprintfrom->partner_dob }}" required>
+                                                                    <input type="date"  id="partner_dob" name="partner_dob" value="{{ old('partner_dob') ?? $Labelprintfrom->partner_dob }}" class="form-control @error('partner_dob') is-invalid @enderror">
+                                                                    @error('partner_dob')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -215,7 +270,7 @@
                                                     <br><br><br>
                                                     @php
                                                     // Convert the stored options string into an array
-                                                    $selectedOptions = explode(',', $Labelprintfrom->options);
+                                                    $selectedOptions = $Labelprintfrom->options ? json_decode($Labelprintfrom->options) : [];
                                                     @endphp
 
                                                     <div class="col-md-12 checkbox-group">
@@ -254,55 +309,100 @@
                                                     <div class="col-md-8">
                                                         <div class="form-group">
                                                             <label for="contact_person">Contact Person</label>
-                                                            <input type="text" class="form-control" id="contact_person" name="contact_person" value="{{ $Labelprintfrom->contact_person }}" required>
+                                                            <input type="text"  id="contact_person" name="contact_person" value="{{ old('contact_person') ?? $Labelprintfrom->contact_person }}" class="form-control @error('contact_person') is-invalid @enderror">
+                                                            @error('contact_person')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="std_code">STD Code</label>
-                                                            <input type="text" class="form-control" id="std_code" name="std_code" value="{{ $Labelprintfrom->std_code }}" required>
+                                                            <input type="text"  id="std_code" name="std_code" value="{{ old('std_code') ?? $Labelprintfrom->std_code }}" class="form-control @error('std_code') is-invalid @enderror">
+                                                            @error('std_code')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="Office">Office</label>
-                                                            <input type="text" class="form-control" id="office" name="office" value="{{ $Labelprintfrom->office }}" required>
+                                                            <input type="text" id="office" name="office" value="{{ old('office') ?? $Labelprintfrom->office }}" class="form-control @error('office') is-invalid @enderror">
+                                                            @error('office')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="Office">Offices</label>
-                                                            <input type="text" class="form-control" id="office2" name="office2" value="{{ $Labelprintfrom->office2 }}" required>
+                                                            <input type="text" id="office2" name="office2" value="{{ old('office2') ?? $Labelprintfrom->office2 }}" class="form-control @error('office2') is-invalid @enderror">
+                                                            @error('office2')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="Resident">Resident</label>
-                                                            <input type="text" class="form-control" id="resident" name="resident" value="{{ $Labelprintfrom->resident }}"  required>
+                                                            <input type="text"  id="resident" name="resident" value="{{ old('resident') ?? $Labelprintfrom->resident }}" class="form-control @error('resident') is-invalid @enderror">
+                                                            @error('resident')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="Fax">Fax</label>
-                                                            <input type="text" class="form-control" id="fax" name="fax" value="{{ $Labelprintfrom->fax }}" required>
+                                                            <input type="text" id="fax" name="fax" value="{{ old('fax') ?? $Labelprintfrom->fax }}" class="form-control @error('fax') is-invalid @enderror">
+                                                            @error('fax')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="Mobile No">Mobile No</label>
-                                                            <input type="number" class="form-control" name="mobile_no" id="mobile_no" value="{{ $Labelprintfrom->mobile_no }}" >
+                                                            <input type="number"  name="mobile_no" id="mobile_no" value="{{ old('mobile_no') ?? $Labelprintfrom->mobile_no }}" class="form-control @error('mobile_no') is-invalid @enderror">
+                                                            @error('mobile_no')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="Mobile No">Mobile No 2</label>
-                                                            <input type="number" class="form-control" name="mobile_no2" id="mobile_no2" value="{{ $Labelprintfrom->mobile_no2 }}">
+                                                            <input type="number"  name="mobile_no2" id="mobile_no2" value="{{ old('mobile_no2') ?? $Labelprintfrom->mobile_no2 }}" class="form-control @error('mobile_no2') is-invalid @enderror">
+                                                            @error('mobile_no2')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="Mobile No">E-mail</label>
-                                                            <input type="email" class="form-control" name="email" id="email" value="{{ $Labelprintfrom->email }}">
+                                                            <input type="email" name="email" id="email" value="{{ old('email') ?? $Labelprintfrom->email }}" class="form-control @error('email') is-invalid @enderror">
+                                                            @error('email')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
 
