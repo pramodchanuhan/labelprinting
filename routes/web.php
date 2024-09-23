@@ -121,6 +121,7 @@ Route::middleware('auth')->group(function () {
     Route::post('labelprint/labelprintfrom-update/{id}', [LabelprintController::class, 'update'])->name('labelprint.labelprintfrom-update');
     Route::get('/labelprint/labelprintfromlist', [LabelprintController::class, 'list'])->name('labelprint.labelprintfromlist');
     Route::delete('/labelprint/delete/{id}', [LabelprintController::class, 'delete'])->name('labelprint.destroy');
+    Route::get('/labelprint/print', [LabelprintController::class, 'print'])->name('labelprint.print');
 
     Route::get('/shreesairaj/thankyou/{id}', [RegisterformController::class, 'thankyou'])->name('shreesairaj.thankyou');
     Route::get('/shreesairaj/registerfromList', [RegisterformController::class, 'registerfromList'])->name('shreesairaj.registerfromList');

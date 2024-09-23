@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Mail\RegistrationSuccessful;
 use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Route;
+use PDF;
 
 class LabelprintController extends Controller
 {
@@ -233,5 +235,10 @@ class LabelprintController extends Controller
         $registerfrom = registerfrom::all();
         $totalAmount = $registerfrom->sum('amount');
         return view('shreesairaj/registerfromList', compact('registerfrom', 'totalAmount'));
+    }
+    public function print(){
+    $LabelprintingData = Labelprintfrom::all();
+    $pdf = PDF::loadView('pdf.labelprint', ['LabelprintingData' => $LabelprintingData]);
+    return $pdf->stream('labelprinting.pdf');
     }
 }

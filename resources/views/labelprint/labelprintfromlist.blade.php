@@ -32,6 +32,7 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped custom-table" id="datatable">
                                         <thead>
+                                            <button class="btn btn-info float-right" id="print">Print</button><br><br>
                                             <tr>
                                                 <th>#</th>
                                                 <th>Prefix</th>
@@ -84,22 +85,29 @@
 
 
     @section('page-level-script')
-
-    <!-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> -->
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
-
-    <!-- <script>
-        $(document).ready(function() {
-            $('#datatable').DataTable();
-        });
-    </script> -->
     <script>
         $(document).ready(function() {
+            $("#print").click(function() {
+                var url = "{{route('labelprint.print')}}";
+                var data = {
+                    _token: "{{ csrf_token() }}",
+                };
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    data: data,
+                    success: function(response) {
+                        console.log(response);
+                        window.open(url, '_blank');
+                    },
+                });
+            });
             $('#datatable').DataTable({
                 dom: 'Bfrtip',
                 buttons: [{
@@ -114,26 +122,7 @@
                         extend: 'excel',
                         text: 'Excel'
                     },
-                    // {
-                    //     extend: 'pdf',
-                    //     text: 'PDF'
-                    // },
-                    // {
-                    //     extend: 'print',
-                    //     text: 'Print',
-                    //     customize: function(win) {
-                    //         // Ensure the printed table has full width and displays all data
-                    //         $(win.document.body).css('font-size', '10pt').prepend('<h3>All Data Print</h3>');
 
-                    //         $(win.document.body).find('table').addClass('display').css('font-size', 'inherit').css('width', '100%');
-                    //     },
-                    //     exportOptions: {
-                    //         modifier: {
-                    //             page: 'all' // Ensures all data is printed, not just visible rows
-                    //         }
-                    //     },
-                    //     autoPrint: false // Prevent automatic print trigger, so we can manipulate scroll
-                    // }
                 ],
                 scrollX: true, // For horizontal scrolling
                 processing: true,
